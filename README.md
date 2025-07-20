@@ -361,7 +361,8 @@ https://github.com/sarah-antillia/Tensorflow-Image-Segmentation-RINGS-Prostate-G
 <br>
 <br>
 <b>4.Tensorflow-Image-Segmentation-Pre-Augmented-RINGS-Prostate-Tumor</b><br>
-<a href="Tensorflow-Image-Segmentation-Pre-Augmented-RINGS-Prostate-Tumor">
+Toshiyuki Arai @antillia.com<br>
+<a href="https://github.com/sarah-antillia/Tensorflow-Image-Segmentation-Pre-Augmented-RINGS-Prostate-Tumor">
 Tensorflow-Image-Segmentation-Pre-Augmented-RINGS-Prostate-Tumor</a>
 <br>
 <br>
