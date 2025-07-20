@@ -1,4 +1,4 @@
-# Copyright 2025 antillia.com Toshiyuki Arai
+# Copyright 2024 antillia.com Toshiyuki Arai
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# 2025/07/20 GlandsTumorImageMaskDatasetGenerator.py
+# 2024/12/23 ImageMaskDatasetGenerator.py
 
 import os
 import sys
@@ -72,24 +72,26 @@ class ImageMaskDatasetGenerator:
      
     self.augmentation = augmentation
     if self.augmentation:
-      self.hflip    = True
-      self.vflip    = True
-      self.rotation = True
+      self.hflip    = False
+      self.vflip    = False
+      self.rotation = False
       #self.ANGLES   = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340]
       self.ANGLES   = [90, 180, 270]
 
       self.deformation=True
       self.alpha    = 1300
-      self.sigmoids = [8, 10,]
+      #self.sigmoids = [8, 10,]
+      self.sigmoids = [8,]
           
       self.distortion=True
       self.gaussina_filer_rsigma = 40
       self.gaussina_filer_sigma  = 0.5
-      self.distortions           = [0.02, 0.03,]
+      #self.distortions           = [0.02, 0.03,]
+      self.distortions           = [0.02, ]
       self.rsigma = "sigma"  + str(self.gaussina_filer_rsigma)
       self.sigma  = "rsigma" + str(self.gaussina_filer_sigma)
       
-      self.resize = True
+      self.resize = False
       self.resize_ratios = [0.7, 0.8, 0.9]
 
       self.barrel_distortion = True
@@ -181,7 +183,7 @@ class ImageMaskDatasetGenerator:
           filepath = os.path.join(output_dir, basename)
           cv2.imwrite(filepath, glands_mask)
           if self.augmentation:
-           self.augment(image, basename, output_dir, border=(0, 0, 0), mask=mask)
+           self.augment(glands_mask, basename, output_dir, border=(0, 0, 0), mask=True)
           return True
 
      tumor_mask  = cv2.resize(tumor_mask, (self.RESIZE))
@@ -194,7 +196,7 @@ class ImageMaskDatasetGenerator:
      filepath = os.path.join(output_dir, basename)
      cv2.imwrite(filepath, tumor_mask)
      if self.augmentation:
-       self.augment(image, basename, output_dir, border=(0, 0, 0), mask=mask)
+       self.augment(tumor_mask, basename, output_dir, border=(0, 0, 0), mask=True)
      return True
 
   def generate_files(self, image_file, index, output_dir, mask=False):
@@ -454,7 +456,7 @@ if __name__ == "__main__":
     glands_masks_dir  = "./RINGS/TRAIN/MANUAL GLANDS/"
     tumor_masks_dir   = "./RINGS/TRAIN/MANUAL TUMOR/"
 
-    augmentation= False
+    augmentation= True
     generator = ImageMaskDatasetGenerator(images_dir       = train_images_dir, 
                                           glands_masks_dir = glands_masks_dir, 
                                           tumor_masks_dir  = tumor_masks_dir,

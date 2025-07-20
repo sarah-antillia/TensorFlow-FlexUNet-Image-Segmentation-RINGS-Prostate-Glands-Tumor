@@ -1,4 +1,7 @@
 <h2>TensorFlow-FlexUNet-Image-Segmentation-RINGS-Prostate-Glands-Tumor (2025/07/20)</h2>
+<li>2025/07/21: Updated <a href="./generator/GlandsTumorImageMaskDatasetGenerator.py">
+GlandsTumorImageMaskDatasetGenerator.py</a> to generate an augmented dataset.</li>
+<br>
 This is the first experiment of Image Segmentation for Prostate-Glands-Tumor
  based on 
 our <a href="./src/TensorFlowFlexUNet.py">TensorFlowFlexUNet</a>
